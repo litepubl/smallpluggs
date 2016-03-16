@@ -1,2 +1,2 @@
 # smallpluggs
-Some small plugins for CMS
+Some small plugins for CMS Litepublisher
