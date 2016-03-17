@@ -13,7 +13,7 @@ class scrollcats extends tplugin {
   }
 
   public function install() {
-tplugins::i()->add('enscroll');
+tplugins::i()->add('smallplugs-enscroll');
     $plugindir = basename(dirname(__file__));
 tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.categories.txt", false);
   }
