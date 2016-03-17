@@ -13,14 +13,14 @@ class scrollcats extends tplugin {
   }
 
   public function install() {
-tplugins::i()->add('smallplugs-enscroll');
+    tplugins::i()->add('smallplugs-enscroll');
     $plugindir = basename(dirname(__file__));
-tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.categories.txt", false);
+    tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.categories.txt", false);
   }
 
   public function uninstall() {
     $plugindir = basename(dirname(__file__));
-tthemeparser::i()->removetags("plugins/$plugindir/resource/theme.categories.txt", false);
-}
+    tthemeparser::i()->removetags("plugins/$plugindir/resource/theme.categories.txt", false);
+  }
 
-}//class
+} //class

@@ -38,6 +38,6 @@ class enscroll extends tplugin {
     $css->lock();
     $css->deletefile('default', "plugins/$plugindir/resource/enscroll.min.css");
     $css->unlock();
-}
+  }
 
-}//class
+} //class
