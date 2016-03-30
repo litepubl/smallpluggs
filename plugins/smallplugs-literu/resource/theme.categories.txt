@@ -1,4 +1,0 @@
-sidebar.categories.items = [
-<div class="scrollable">
-<ul>$item</ul>
-</div>]

@@ -11,6 +11,11 @@ use litepubl;
 
 class literu extends \tplugin {
 
+protected function create() {
+parent::create();
+$this->data['idfeature'] = 0;
+}
+
   public function onMenuContent($menu, &$content) {
     $content = \ttheme::i()->parse($content);
   }
@@ -24,6 +29,33 @@ $links->save();
 return;
 }
 }
+}
+
+public function getfeature() {
+if ($idcat = $this->idfeature) {
+$filename = 'literu.feature.' . $idcat;
+if ($result = \litepublisher::$urlmap->cache->get($filename)) {
+return $result;
+} else {
+$result = $this->getFeatureContent($idcat);
+\litepublisher::$urlmap->cache->set($filename, $result);
+return $result;
+}
+}
+
+return '';
+}
+
+protected function getFeatureContent($idcat) {
+$cats = \tcategories::i();
+   $items = $cats->get_sorted_posts($idcat, 0, false);
+    if (count($items)) {
+        $theme = ttheme::i();
+    return $theme->getpostswidgetcontent($items, 0, $theme->templates['custom']['literufeature']) .
+$theme->templates['custom']['literufeaturies'];
+  }
+
+return '';  
 }
   
 }//class

@@ -12,9 +12,15 @@ use litepubl;
 function literuInstall($self) {
   \tmenus::i()->oncontent = $self->onMenuContent;
 \tbackuper::i()->onuploaded = $this->onuploaded;
+    \tplugins::i()->add('smallplugs-enscroll');
+    $plugindir = basename(dirname(__file__));
+    \tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.txt", false);
 }
 
 function literuUninstall($self) {
   \tmenus::i()->unbind($self);
   \tbackuper::i()->unbind($self);
+    \tplugins::i()->delete('smallplugs-enscroll');
+    $plugindir = basename(dirname(__file__));
+    \tthemeparser::i()->removetags("plugins/$plugindir/resource/theme.txt", false);
 }
