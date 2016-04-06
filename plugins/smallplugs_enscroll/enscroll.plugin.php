@@ -6,11 +6,12 @@
  *
  */
 
-class enscroll extends tplugin {
+namespace litepubl\plugins\smallplugs_enscroll;
+use litepubl\tplugins;
+use litepubl\tjsmerger;
+use litepubl\tcssmerger;
 
-  public static function i() {
-    return getinstance(__class__);
-  }
+class enscroll extends tplugin {
 
   public function install() {
     $plugindir = basename(dirname(__file__));
