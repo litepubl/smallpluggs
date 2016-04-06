@@ -7,8 +7,13 @@
  */
 
 namespace litepubl\plugins\smallplugs_literu;
+use litepubl\litepubl;
+use litepubl\tplugin;
+use litepubl\ttheme;
+use litepubl\tlinkswidget;
+use litepubl\tcategories;
 
-class literu extends litepubl\tplugin {
+class literu extends tplugin {
 
 protected function create() {
 parent::create();
@@ -16,13 +21,13 @@ $this->data['idfeature'] = 0;
 }
 
   public function onMenuContent($menu, &$content) {
-    $content = litepubl\ttheme::i()->parse($content);
+    $content = ttheme::i()->parse($content);
   }
 
 public function onuploaded() {
-$links = litepubl\tlinkswidget::i();
+$links = tlinkswidget::i();
 foreach ($links->items as $id => $item) {
-if (\strbegin($item['url'], 'https://github.com/litepubl/cms/archive/')) {
+if (strbegin($item['url'], 'https://github.com/litepubl/cms/archive/')) {
 $links->items[$id]['url'] = sprintf('https://github.com/litepubl/cms/archive/v%s.zip', litepublisher::$options->version);
 $links->save();
 return;
@@ -33,11 +38,11 @@ return;
 public function getfeature() {
 if ($idcat = $this->idfeature) {
 $filename = 'literu.feature.' . $idcat;
-if ($result = litepubl\litepubl::$urlmap->cache->get($filename)) {
+if ($result = litepubl::$urlmap->cache->get($filename)) {
 return $result;
 } else {
 $result = $this->getFeatureContent($idcat);
-litepubl\litepubl::$urlmap->cache->setString($filename, $result);
+litepubl::$urlmap->cache->setString($filename, $result);
 return $result;
 }
 }
@@ -46,10 +51,10 @@ return '';
 }
 
 protected function getFeatureContent($idcat) {
-$cats = litepubl\tcategories::i();
+$cats = tcategories::i();
    $items = $cats->get_sorted_posts($idcat, 0, false);
     if (count($items)) {
-        $theme = litepubl\ttheme::i();
+        $theme = ttheme::i();
     return $theme->getpostswidgetcontent($items, 0, $theme->templates['custom']['literufeature']) .
 $theme->templates['custom']['literufeaturies'];
   }
