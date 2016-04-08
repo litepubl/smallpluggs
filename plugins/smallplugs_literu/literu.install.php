@@ -7,6 +7,7 @@
  */
 
 namespace litepubl\plugins\smallplugs_literu;
+use litepubl\litepubl;
 use litepubl\tplugins;
 use litepubl\tmenus;
 use litepubl\tbackuper;
@@ -18,6 +19,7 @@ function literuInstall($self) {
     tplugins::i()->add('smallplugs_enscroll');
     $plugindir = basename(dirname(__file__));
     tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.txt", false);
+litepubl::$classes->classes['literu'] = get_class($self);
 }
 
 function literuUninstall($self) {
@@ -26,4 +28,5 @@ function literuUninstall($self) {
     tplugins::i()->delete('smallplugs_enscroll');
     $plugindir = basename(dirname(__file__));
     tthemeparser::i()->removetags("plugins/$plugindir/resource/theme.txt", false);
+unset(litepubl::$classes->classes['literu']);
 }
