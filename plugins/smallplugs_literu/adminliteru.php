@@ -18,15 +18,15 @@ class adminliteru implements iadmin {
     public function getcontent() {
         $plugin = literu::i();
         $args = new targs();
-$args->category = tposteditor::getcombocategories([], $plugin->idfeature);
-$args->formtitle = tlocal::i()->options;
+        $args->category = tposteditor::getcombocategories([], $plugin->idfeature);
+        $args->formtitle = tlocal::i()->options;
         return admintheme::i()->form('[combo=category]', $args);
     }
 
     public function processform() {
-$plugin = literu::i();
-$plugin->idfeature = (int) $_POST['category'];
-$plugin->save();
-}
+        $plugin = literu::i();
+        $plugin->idfeature = (int)$_POST['category'];
+        $plugin->save();
+    }
 
 }
