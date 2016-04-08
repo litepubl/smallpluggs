@@ -18,7 +18,7 @@ class enscroll extends tplugin {
         $js = tjsmerger::i();
         $js->lock();
         $js->add('default', "plugins/$plugindir/resource/enscroll-0.6.1.min.js");
-        $js->add('default', "plugins/$plugindir/resource/init.js");
+        $js->add('default', "plugins/$plugindir/resource/init.min.js");
         $js->unlock();
 
         $css = tcssmerger::i();
@@ -32,7 +32,7 @@ class enscroll extends tplugin {
         $js = tjsmerger::i();
         $js->lock();
         $js->deletefile('default', "plugins/$plugindir/resource/enscroll-0.6.1.min.js");
-        $js->deletefile('default', "plugins/$plugindir/resource/init.js");
+        $js->deletefile('default', "plugins/$plugindir/resource/init.min.js");
         $js->unlock();
 
         $css = tcssmerger::i();
