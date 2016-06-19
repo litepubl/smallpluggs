@@ -7,26 +7,27 @@
  */
 
 namespace litepubl\plugins\smallplugs_literu;
-use litepubl\litepubl;
-use litepubl\tplugins;
-use litepubl\tmenus;
-use litepubl\tbackuper;
-use litepubl\tthemeparser;
+
+use litepubl\core\Plugins;
+use litepubl\pages\Menus;
+use litepubl\utils\Bbackuper;
+use litepubl\view\Parser;
+use litepubl\view\AutoVars;
 
 function literuInstall($self) {
-    tmenus::i()->oncontent = $self->onMenuContent;
-    tbackuper::i()->onuploaded = $self->onuploaded;
-    tplugins::i()->add('smallplugs_enscroll');
+    Menus::i()->oncontent = $self->onMenuContent;
+    Backuper::i()->onuploaded = $self->onuploaded;
+    Plugins::i()->add('smallplugs_enscroll');
     $plugindir = basename(dirname(__file__));
-    tthemeparser::i()->addtags("plugins/$plugindir/resource/theme.txt", false);
-litepubl::$classes->classes['literu'] = get_class($self);
+    Parser::i()->addTags("plugins/$plugindir/resource/theme.txt", false);
+AutoVars::i()->add('literu', get_class($self));
 }
 
 function literuUninstall($self) {
-    tmenus::i()->unbind($self);
-    tbackuper::i()->unbind($self);
-    tplugins::i()->delete('smallplugs_enscroll');
+    Menus::i()->unbind($self);
+    Backuper::i()->unbind($self);
+    Plugins::i()->delete('smallplugs_enscroll');
     $plugindir = basename(dirname(__file__));
-    tthemeparser::i()->removetags("plugins/$plugindir/resource/theme.txt", false);
-unset(litepubl::$classes->classes['literu']);
+    Parser::i()->removetags("plugins/$plugindir/resource/theme.txt", false);
+AutoVars::i()->delete('literu');
 }

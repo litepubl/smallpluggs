@@ -7,20 +7,19 @@
  */
 
 namespace litepubl\plugins\smallplugs_literu;
-use litepubl\iadmin;
-use litepubl\targs;
-use litepubl\tposteditor;
-use litepubl\admintheme;
-use litepubl\tlocal;
 
-class adminliteru implements iadmin {
+use litepubl\admin\posts\Editor;
 
-    public function getcontent() {
+class adminliteru extends  \litepubl\admin\Panel
+{
+
+    public function getcontent(): string
+ {
         $plugin = literu::i();
-        $args = new targs();
-        $args->category = tposteditor::getcombocategories([], $plugin->idfeature);
-        $args->formtitle = tlocal::i()->options;
-        return admintheme::i()->form('[combo=category]', $args);
+        $args = $this->args;
+        $args->category = Editor::getComboCategories([], $plugin->idfeature);
+        $args->formtitle = $this->lang->options;
+        return $this->admin->form('[combo=category]', $args);
     }
 
     public function processform() {
