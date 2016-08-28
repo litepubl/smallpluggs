@@ -4,13 +4,13 @@
  * Licensed under the MIT (LICENSE.txt) license.
  **/
 
-(function($, document) {
+(function($) {
   'use strict';
 
-  $(document).ready(function() {
+  $(function() {
     $('.scrollable').enscroll({
       minScrollbarLength: 15
     });
   });
 
-})(jQuery, document);
+})(jQuery);
